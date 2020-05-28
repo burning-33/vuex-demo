@@ -10,7 +10,7 @@
 
             <!-- favorites -->
             <div class="btn-group" role="group">
-                <button type="button" class="btn btn-default" >Favorites</button>
+                <button :class="{active: show === 'favorite'}" type="button" class="btn btn-default" >Favorites</button>
             </div>
         </div>
         <div class="btn-group btn-group-justified" role="group">
@@ -23,7 +23,7 @@
         </div>
     </div>
     <div class="note-items" v-for="item in filterNote" :key="item.id">
-        <p class="note-item">{{item.title}}</p>
+        <p class="note-item" :class="[item.id === activeNote.id?'active':'']">{{item.title}}</p>
     </div>
   </div>
 </template>
@@ -74,5 +74,10 @@ export default {
         background: #fff;
         padding: 10px;
         cursor: pointer;
+        margin-bottom: 0;
+    }
+    .note-items .note-item.active{
+        background: rgba(24, 53, 133, 0.459);
+        color: #fff;
     }
 </style>

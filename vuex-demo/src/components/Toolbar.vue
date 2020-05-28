@@ -2,12 +2,13 @@
   <div class="toolbar">
     <i class="glyphicon logo"><img src="../assets/logo.png" width="30" height="30" alt=""></i>
     <i class="glyphicon glyphicon-plus" @click="addNote"></i>
-    <i class="glyphicon glyphicon-star"></i>
+    <i class="glyphicon glyphicon-star" @click="toggleFavorite"></i>
     <i class="glyphicon glyphicon-remove"></i>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   name: 'Toolbar',
   data () {
@@ -15,8 +16,10 @@ export default {
     }
   },
   methods: {
-    addNote () {
-    }
+    ...mapActions([
+      'addNote',
+      'toggleFavorite'
+    ])
   }
 }
 </script>
