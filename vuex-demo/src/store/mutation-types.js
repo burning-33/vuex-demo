@@ -1,2 +1,5 @@
 export const ADD_NOTE = 'ADD_NOTE'
 export const TOGGLE_FAVORITE = 'TOGGLE_FAVORITE'
+export const TOGGLE_LIST_SHOW = 'TOGGLE_LIST_SHOW'
+export const SET_CURRENT_NOTE = 'SET_CURRENT_NOTE'
+export const DELETE_NOTE = 'DELETE_NOTE'

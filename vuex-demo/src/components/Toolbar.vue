@@ -2,23 +2,29 @@
   <div class="toolbar">
     <i class="glyphicon logo"><img src="../assets/logo.png" width="30" height="30" alt=""></i>
     <i class="glyphicon glyphicon-plus" @click="addNote"></i>
-    <i class="glyphicon glyphicon-star" @click="toggleFavorite"></i>
-    <i class="glyphicon glyphicon-remove"></i>
+    <i class="glyphicon glyphicon-star" :class="{active: activeNote.favorite}" @click="toggleFavorite"></i>
+    <i class="glyphicon glyphicon-remove"  @click="deleteNote"></i>
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 export default {
   name: 'Toolbar',
   data () {
     return {
     }
   },
+  computed: {
+    ...mapState([
+      'activeNote'
+    ])
+  },
   methods: {
     ...mapActions([
       'addNote',
-      'toggleFavorite'
+      'toggleFavorite',
+      'deleteNote'
     ])
   }
 }
@@ -39,5 +45,8 @@ export default {
   color: #737474;
   font-size: 3rem;
   cursor: pointer;
+}
+.glyphicon-star.active{
+  color: #dabc15;
 }
 </style>

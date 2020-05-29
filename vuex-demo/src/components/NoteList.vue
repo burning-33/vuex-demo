@@ -5,12 +5,14 @@
         <div class="btn-group btn-group-justified" role="group">
             <!-- all -->
             <div class="btn-group" role="group">
-                <button :class="{active: show === 'all'}"  type="button" class="btn btn-default">All Notes</button>
+                <button @click="toggleShow('all')"
+                :class="{active: show === 'all'}"  type="button" class="btn btn-default">All Notes</button>
             </div>
 
             <!-- favorites -->
             <div class="btn-group" role="group">
-                <button :class="{active: show === 'favorite'}" type="button" class="btn btn-default" >Favorites</button>
+                <button @click="toggleShow('favorite')"
+                :class="{active: show === 'favorite'}" type="button" class="btn btn-default" >Favorites</button>
             </div>
         </div>
         <div class="btn-group btn-group-justified" role="group">
@@ -22,14 +24,15 @@
             </div>
         </div>
     </div>
-    <div class="note-items" v-for="item in filterNote" :key="item.id">
-        <p class="note-item" :class="[item.id === activeNote.id?'active':'']">{{item.title}}</p>
+    <div class="note-items" v-for="item in searchList" :key="item.id">
+        <p @click="setActiveNote(item)" class="note-item"
+         :class="{active: item === activeNote}">{{item.title.trim().substring(0,30)}}</p>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapState } from 'vuex'
+import { mapGetters, mapState, mapActions } from 'vuex'
 export default {
   name: 'noteList',
   data () {
@@ -44,7 +47,28 @@ export default {
     ...mapState([
       'activeNote',
       'show'
-    ])
+    ]),
+    searchList () {
+      if (this.search.length > 0) {
+        return this.filterNote.filter(note => note.title.toLowerCase().indexOf(this.search) > -1)
+      } else {
+        return this.filterNote
+      }
+    }
+  },
+  methods: {
+    ...mapActions([
+      'toggleListShow',
+      'setCurrentNote'
+    ]),
+
+    toggleShow (type) {
+      this.toggleListShow({ show: type })
+    },
+
+    setActiveNote (note) {
+      this.setCurrentNote({ note })
+    }
   }
 }
 </script>
