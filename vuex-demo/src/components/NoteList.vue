@@ -2,6 +2,11 @@
   <div class="noteList">
     <div class="nav-note">
         <h2>notes | heavenru.com</h2>
+        <btn v-for="(btn, index) in testData"
+              :key="index"
+              :type='btn.type'
+              :text='btn.text'
+              >{{btn.text}}</btn>
         <div class="btn-group btn-group-justified" role="group">
             <!-- all -->
             <div class="btn-group" role="group">
@@ -37,8 +42,17 @@ export default {
   name: 'noteList',
   data () {
     return {
-      search: ''
+      search: '',
+      testData: [
+        { type: 'default', text: 'default', handle: 'handleDefault' },
+        { type: 'error', text: 'error', handle: 'handleError' },
+        { type: 'warn', text: 'warn', handle: 'handleWarn' },
+        { type: 'success', text: 'success', handle: 'handleSuccess' }
+      ]
     }
+  },
+  components: {
+    btn: () => import('./AppButton')
   },
   computed: {
     ...mapGetters([

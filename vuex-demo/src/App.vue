@@ -1,8 +1,17 @@
 <template>
   <div id="app">
-    <toolbar></toolbar>
-    <note-list></note-list>
-    <editor></editor>
+    <header>
+      <div class="nav-left">
+        <h1><img src="" alt=""></h1>
+        <h2>Burning_33</h2>
+      </div>
+      <div class="nav-right">
+
+      </div>
+    </header>
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
   </div>
 </template>
 
@@ -10,19 +19,17 @@
 export default {
   name: 'App',
   components: {
-    Toolbar: () => import('./components/Toolbar'),
-    Editor: () => import('./components/Editor'),
-    NoteList: () => import('./components/NoteList')
   }
 }
 </script>
 
-<style>
+<style lang="less">
 body {
   margin: 0;
   padding: 0;
 }
-#app{
-  display: flex;
+header {
+  width: 100%;
+  height: 50px;
 }
 </style>
