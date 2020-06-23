@@ -6,7 +6,6 @@
         <h2>Burning_33</h2>
       </div>
       <div class="nav-right">
-
       </div>
     </header>
     <keep-alive>
